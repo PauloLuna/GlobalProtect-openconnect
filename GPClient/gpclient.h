@@ -2,9 +2,11 @@
 #define GPCLIENT_H
 
 #include "gpservice_interface.h"
+#include "gpclientoperator.h"
 #include <QMainWindow>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include <QSystemTrayIcon>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class GPClient; }
@@ -24,17 +26,25 @@ signals:
 private slots:
     void on_connectButton_clicked();
     void preloginResultFinished();
-    void getconfigResultFinished();
+    void getConfigSuccess(QString user, QString usercookie, QStringList gateways, QStringList cas);
 
     void onLoginSuccess(QJsonObject loginResult);
 
     void onVPNConnected();
     void onVPNDisconnected();
     void onVPNLogAvailable(QString log);
+    void connectToGateway(const QString gateway);
 
     void on_actionLogout_triggered();
 
     void on_actionClear_data_triggered();
+
+    void on_actionInstall_Root_CA_s_triggered();
+
+    void on_actionUninstall_Root_CA_s_triggered();
+
+    void on_actionConnect_triggered();
+    void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
 
 private:
     Ui::GPClient *ui;
@@ -42,9 +52,10 @@ private:
     QNetworkReply *reply;
     com::yuezk::qt::GPService *vpn;
     QSettings *settings;
-    QString user;
+    GPClientOperator *clientoperator;
     QString phpsessid;
     QString preloginCookie;
+    QSystemTrayIcon * systemTrayIcon;
 
     void initVpnStatus();
     void moveCenter();

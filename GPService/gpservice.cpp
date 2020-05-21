@@ -64,6 +64,7 @@ void GPService::connect(QString server, QString username, QString passwd)
 
     QStringList args;
     args << QCoreApplication::arguments().mid(1)
+     << "--interface=gptun"
      << "--protocol=gp"
      << "-u" << username
      << "--passwd-on-stdin"
@@ -89,7 +90,8 @@ void GPService::connect_gw(QString server, QString username, QString passwd, QSt
     }
 
     QStringList args;
-    args << QCoreApplication::arguments().mid(1)
+    args << QCoreApplication::arguments().mid(1)            
+     << "--interface=gptun"
      << "--protocol=gp"
      << "-u" << username
      << "--passwd-on-stdin"
@@ -134,7 +136,8 @@ void GPService::onProcessStdout()
     log(output);
     if (output.indexOf("Connected as") >= 0) {
         vpnStatus = GPService::VpnConnected;
-        emit connected();
+        emit connected();        
+        leaveNetworkManager();
     }
 }
 
@@ -158,4 +161,18 @@ void GPService::log(QString msg)
 {
     qInfo() << msg;
     emit logAvailable(msg);
+}
+
+void GPService::leaveNetworkManager()
+{
+    QStringList args;
+    args << "device"
+     << "set"
+     << "gptun"
+     << "managed"
+     << "no";
+    struct timespec ts = { 5, 0};
+    nanosleep(&ts, NULL);
+    QProcess* nmcli = new QProcess();
+    log("Remove gptun from network manager out: " + QString::number(nmcli->execute(binNmcli, args)));
 }

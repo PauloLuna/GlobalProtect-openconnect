@@ -1,9 +1,13 @@
 # GlobalProtect-openconnect
 A GlobalProtect VPN client (GUI) for Linux based on Openconnect and built with Qt5, supports SAML auth mode, inspired by [gp-saml-gui](https://github.com/dlenski/gp-saml-gui).
 
-<p align="center">
-  <img src="screenshot.png">
-</p>
+
+
+
+|Initial Window      |Gateways in dropdown list after login     |VPN Connected       |Install VPN certificates (Ubuntu and Fedora)
+|----------|----------|----------|-----------|
+| ![Start](imgs/img3.png)  |![Login](imgs/img4.png)|![Connect](imgs/img5.png)|![Connect](imgs/img7.png)|
+
 
 ## Prerequisites
 
@@ -11,14 +15,14 @@ A GlobalProtect VPN client (GUI) for Linux based on Openconnect and built with Q
 - Qt5, qt5-webengine, qt5-websockets
 
 ### Ubuntu
-1. Install openconnect v8.x
-
-   For Ubuntu 18.04 you might need to [build the latest openconnect from source code](https://gist.github.com/yuezk/ab9a4b87a9fa0182bdb2df41fab5f613).
-   
-2. Install the Qt dependencies
-    ```sh
-    sudo apt install qt5-default libqt5websockets5-dev qtwebengine5-dev
-    ```
+To install openconnect 8.08
+```sh
+bash <(curl -s https://raw.githubusercontent.com/inloco/GlobalProtect-openconnect/master/install/ubuntu-openconnect.sh)
+```
+To install client
+```sh
+bash <(curl -s https://raw.githubusercontent.com/inloco/GlobalProtect-openconnect/master/install/ubuntu.sh)
+```
 ### OpenSUSE
 Install the Qt dependencies
 
@@ -27,13 +31,13 @@ sudo zypper install libqt5-qtbase-devel libqt5-qtwebsockets-devel libqt5-qtweben
 ```
 
 ### Fedora
-To install client
-```sh
-bash <(curl -s https://raw.githubusercontent.com/inloco/GlobalProtect-openconnect/master/install/fedora.sh)
-```
 To install openconnect 8.08
 ```sh
 bash <(curl -s https://raw.githubusercontent.com/inloco/GlobalProtect-openconnect/master/install/fedora-openconnect.sh)
+```
+To install client
+```sh
+bash <(curl -s https://raw.githubusercontent.com/inloco/GlobalProtect-openconnect/master/install/fedora.sh)
 ```
 ## Install
 

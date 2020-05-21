@@ -13,6 +13,8 @@ static const QString binaryPaths[] {
     "/opt/sbin/openconnect"
 };
 
+static const QString binNmcli = "/usr/bin/nmcli";
+
 class GPService : public QObject
 {
     Q_OBJECT
@@ -53,6 +55,7 @@ private:
     int vpnStatus = GPService::VpnNotConnected;
 
     void log(QString msg);
+    void leaveNetworkManager();
     static QString findBinary();
 };
 

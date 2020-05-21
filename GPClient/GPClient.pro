@@ -20,17 +20,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 SOURCES += \
+    bestavailablethread.cpp \
     cdpcommand.cpp \
     cdpcommandmanager.cpp \
     enhancedwebview.cpp \
+    gpclientoperator.cpp \
     main.cpp \
     samlloginwindow.cpp \
     gpclient.cpp
 
 HEADERS += \
+    bestavailablethread.h \
     cdpcommand.h \
     cdpcommandmanager.h \
     enhancedwebview.h \
+    gpclientoperator.h \
     samlloginwindow.h \
     gpclient.h
 

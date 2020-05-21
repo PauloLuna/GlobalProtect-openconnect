@@ -9,6 +9,7 @@ int main(int argc, char *argv[])
         qputenv(ENV_CDP_PORT, "12315");
     }
     SingleApplication app(argc, argv);
+    app.setApplicationName("GP VPN Client");
     GPClient w;
     w.show();
 
